@@ -6,6 +6,7 @@ var apk = 'calendula.apk'
 const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const shell = require('shelljs');
 
 app.options('*', cors());
 app.use(cors());
@@ -21,22 +22,29 @@ server.on('listening', function() {
 var device;
 
 var monkey = require('adbkit-monkey');
-client.listDevices()
-  .then(function(devices) {
-    return Promise.map(devices, function(device) {
-      console.log("id %s",device.id)
-      return client.install(device.id, apk)
-    })
-  })
-  .then(function() {
-    console.log('Installed %s on all connected devices', apk)
-    var client = monkey.connect({ port: 8080 });
-    client.press(1, function(err) {
-  assert.ifError(err);
-  console.log('Pressed home button');
-  client.end();
-});
-  })
-  .catch(function(err) {
-    console.error('Something went wrong:', err.stack)
-  })
+
+shell.exec("adb devices");
+shell.exec("cd /Users/adriana.bonilla/Library/Android/sdk/emulator/emulator");
+shell.exec("emulator -avd Nexus_5X_API_29 -netdelay none -netspeed full");
+shell.exec("emulator -list-avds");
+shell.exec("adb install habitica.apk");
+
+// client.listDevices()
+//   .then(function(devices) {
+//     return Promise.map(devices, function(device) {
+//       console.log("id %s",device.id)
+//       return client.install(device.id, apk)
+//     })
+//   })
+//   .then(function() {
+//     console.log('Installed %s on all connected devices', apk)
+//     var client = monkey.connect({ port: 8080 });
+//     client.press(1, function(err) {
+//   assert.ifError(err);
+//   console.log('Pressed home button');
+//   client.end();
+// });
+//   })
+//   .catch(function(err) {
+//     console.error('Something went wrong:', err.stack)
+//   })
