@@ -27,7 +27,7 @@ shell.exec("adb devices");
 shell.exec("cd /Users/adriana.bonilla/Library/Android/sdk/emulator/emulator");
 shell.exec("emulator -avd Nexus_5X_API_29 -netdelay none -netspeed full");
 shell.exec("emulator -list-avds");
-shell.exec("adb install habitica.apk");
+shell.exec("adb install  /Users/adriana.bonilla/Documents/u/worker_monkey_adb/vendor/habitica.apk");
 
 // client.listDevices()
 //   .then(function(devices) {
