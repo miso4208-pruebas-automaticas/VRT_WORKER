@@ -1,0 +1,29 @@
+No test server found for this combination of app and calabash version. Recreating test server.
+Done signing the test server. Moved it to test_servers/186b14e1660c4c2b97c38271b74af09c_0.9.12.apk
+Feature: Abrir menu de ayuda
+
+  Scenario: Como un usuario quiero ver la opcion de pacientes en el menu # features/test-calendula.feature:3
+    When I swipe left                                                    # calabash-android-0.9.12/lib/calabash-android/steps/navigation_steps.rb:15
+    And I press "Pacientes"                                              # calabash-android-0.9.12/lib/calabash-android/steps/press_button_steps.rb:17
+      Timeout waiting for elements: * marked:'Pacientes' (Calabash::Android::WaitHelpers::WaitError)
+      features/test-calendula.feature:5:in `And I press "Pacientes"'
+    Then I should see "Usuario"                                          # calabash-android-0.9.12/lib/calabash-android/steps/assert_steps.rb:9
+
+  Scenario: Como un usuario quiero ver la opcion de Botiquín en el menu # features/test-calendula.feature:8
+    When I swipe left                                                   # calabash-android-0.9.12/lib/calabash-android/steps/navigation_steps.rb:15
+    And I press "Botiquín"                                              # calabash-android-0.9.12/lib/calabash-android/steps/press_button_steps.rb:17
+    Then I should see "Botiquín de Usuario"                             # calabash-android-0.9.12/lib/calabash-android/steps/assert_steps.rb:9
+
+  Scenario: Como un usuario quiero ver la opcion de Rutinas en el menu # features/test-calendula.feature:13
+    When I swipe left                                                  # calabash-android-0.9.12/lib/calabash-android/steps/navigation_steps.rb:15
+    And I press "Rutinas"                                              # calabash-android-0.9.12/lib/calabash-android/steps/press_button_steps.rb:17
+    Then I should see "Desayuno"                                       # calabash-android-0.9.12/lib/calabash-android/steps/assert_steps.rb:9
+    Then I should see "Comida"                                         # calabash-android-0.9.12/lib/calabash-android/steps/assert_steps.rb:9
+    Then I should see "Cena"                                           # calabash-android-0.9.12/lib/calabash-android/steps/assert_steps.rb:9
+
+Failing Scenarios:
+cucumber features/test-calendula.feature:3 # Scenario: Como un usuario quiero ver la opcion de pacientes en el menu
+
+3 scenarios (1 failed, 2 passed)
+11 steps (1 failed, 1 skipped, 9 passed)
+0m54.092s
