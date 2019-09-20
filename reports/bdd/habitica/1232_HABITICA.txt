@@ -1,0 +1,20 @@
+No test server found for this combination of app and calabash version. Recreating test server.
+Done signing the test server. Moved it to test_servers/c3e525f762211a25d4c003a49d65fb27_0.9.12.apk
+Feature: Abrir registro de usuario
+
+  Scenario: Como un usuario quiero ver la opcion registro de nuevos usuarios # features/test-habitica.feature:3
+    When I swipe left                                                        # calabash-android-0.9.12/lib/calabash-android/steps/navigation_steps.rb:15
+    And I press "Register"                                                   # calabash-android-0.9.12/lib/calabash-android/steps/press_button_steps.rb:17
+    Then I should see "Username"                                             # calabash-android-0.9.12/lib/calabash-android/steps/assert_steps.rb:9
+      Timeout waiting for elements: * {text CONTAINS[c] 'Username'} (Calabash::Android::WaitHelpers::WaitError)
+      features/test-habitica.feature:6:in `Then I should see "Username"'
+    Then I should see "Email address"                                        # calabash-android-0.9.12/lib/calabash-android/steps/assert_steps.rb:9
+    Then I should see "Password"                                             # calabash-android-0.9.12/lib/calabash-android/steps/assert_steps.rb:9
+    Then I should see "Confirm Password"                                     # calabash-android-0.9.12/lib/calabash-android/steps/assert_steps.rb:9
+
+Failing Scenarios:
+cucumber features/test-habitica.feature:3 # Scenario: Como un usuario quiero ver la opcion registro de nuevos usuarios
+
+1 scenario (1 failed)
+6 steps (1 failed, 3 skipped, 2 passed)
+0m31.471s

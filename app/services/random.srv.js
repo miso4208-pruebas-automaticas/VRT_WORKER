@@ -23,10 +23,10 @@ module.exports.generateRandom = function(req,success,error){
     const eventsNumber = req.number ? req.number : 10;
     shell.exec(`adb install ${req.path_project}/vendor/${apkInstall}`)
     shell.exec(`adb shell monkey -p ${appPackage} -v ${eventsNumber}`, function(code, stdout, stderr) {
-        fs.writeFile(`${req.path_project}/reports/${req.code}${req.app}.txt`, stdout, function (err) {
+        fs.writeFile(`${req.path_project}/reports/random/${req.code}_${req.app}.txt`, stdout, function (err) {
             if (err) throw err;
             console.log('File is created successfully.');
-            success('OK');
+            success(`${req.path_project}/reports/${req.code}${req.app}.txt`);
           }); 
       });
     

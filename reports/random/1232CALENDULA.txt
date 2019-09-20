@@ -1,0 +1,32 @@
+  bash arg: -p
+  bash arg: es.usc.citius.servando.calendula
+  bash arg: -v
+  bash arg: 20
+:Monkey: seed=1569282153858 count=20
+:AllowPackage: es.usc.citius.servando.calendula
+:IncludeCategory: android.intent.category.LAUNCHER
+:IncludeCategory: android.intent.category.MONKEY
+// Event percentages:
+//   0: 15.0%
+//   1: 10.0%
+//   2: 2.0%
+//   3: 15.0%
+//   4: -0.0%
+//   5: -0.0%
+//   6: 25.0%
+//   7: 15.0%
+//   8: 2.0%
+//   9: 2.0%
+//   10: 1.0%
+//   11: 13.0%
+:Switch: #Intent;action=android.intent.action.MAIN;category=android.intent.category.LAUNCHER;launchFlags=0x10200000;component=es.usc.citius.servando.calendula/.activities.StartActivity;end
+    // Allowing start of Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] cmp=es.usc.citius.servando.calendula/.activities.StartActivity } in package es.usc.citius.servando.calendula
+:Sending Trackball (ACTION_MOVE): 0:(-5.0,4.0)
+    // Allowing start of Intent { cmp=es.usc.citius.servando.calendula/.HomePagerActivity } in package es.usc.citius.servando.calendula
+    // activityResuming(es.usc.citius.servando.calendula)
+:Sending Trackball (ACTION_MOVE): 0:(-5.0,-3.0)
+Events injected: 20
+:Sending rotation degree=0, persist=false
+:Dropped: keys=0 pointers=0 trackballs=0 flips=0 rotations=0
+## Network stats: elapsed time=1009ms (0ms mobile, 0ms wifi, 1009ms not connected)
+// Monkey finished
