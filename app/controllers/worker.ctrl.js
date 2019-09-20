@@ -31,7 +31,6 @@ router.post('/calabash',function(req,res){
     
     let data={
         'app' : req.body.app,
-        'number' : req.body.number,
         'code': req.body.code,
         'path_project': req.body.path_project
     }
