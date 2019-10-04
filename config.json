@@ -1,0 +1,6 @@
+{
+    "dhost": "database-hangover.ceypx21jqeez.us-east-2.rds.amazonaws.com",
+    "dbname": "database-hangover",
+    "dbuser": "admin",
+    "dbpassword":"Hangover2019"
+}
