@@ -2,5 +2,5 @@
     "dhost": "root.ceypx21jqeez.us-east-2.rds.amazonaws.com",
     "dbname": "root",
     "dbuser": "hangover",
-    "dbpassword":"hangover2019"
+    "dbpassword":"root2019"
 }

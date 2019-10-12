@@ -32,13 +32,13 @@ var connection = mysql.createConnection({
   database: config.dbname
 });
 
-connection.connect(function(err) {
-  if (err) {
-    console.error('Database connection failed: ' + err.stack);
-    return;
-  }
+// connection.connect(function(err) {
+//   if (err) {
+//     console.error('Database connection failed: ' + err.stack);
+//     return;
+//   }
 
-  console.log('Connected to database.');
-});
+//   console.log('Connected to database.');
+// });
 
-connection.end();
+// connection.end();

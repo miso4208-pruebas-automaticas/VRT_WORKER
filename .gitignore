@@ -65,3 +65,4 @@ config/config.json
 front/package-lock.json
 package-lock.json
 /test_servers
+reports/*
