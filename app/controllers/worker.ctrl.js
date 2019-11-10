@@ -2,48 +2,33 @@
 var express = require('express')
 var router = express.Router();
 var randomService = require('../services/random.srv.js');
-var bddService = require('../services/bdd.srv.js');
 var http = require('http');
+var cron = require('node-cron');
+var sqs = require('../../worker-sqs/sqs.js')
 
-router.post('/random',function(req,res){
-    console.log("random rq: "+ JSON.stringify(req.body))
-    
-    let data={
-        'app' : req.body.app,
-        'number' : req.body.number,
-        'code': req.body.code,
-        'path_project': req.body.path_project
-    }
-    randomService.generateRandom(data, function(apps){
-        res.statusCode = 200;
-        res.send({ status: "OK" });
-    },function(err){
-        res.statusCode = 404;
-        res.send(err);
-        
-    })
-  
-    return res;
-});
 
-router.post('/calabash',function(req,res){
-    console.log("calabash rq: "+ JSON.stringify(req.body))
-    
-    let data={
-        'app' : req.body.app,
-        'code': req.body.code,
-        'path_project': req.body.path_project
-    }
-    bddService.generate(data, function(apps){
-        res.statusCode = 200;
-        res.send({ status: "OK" });
-    },function(err){
-        res.statusCode = 404;
-        res.send(err);
-        
-    })
+
+
+const execute = () => {
+    sqs.getSqs(function(apps){
+        console.log("Ejecucion RANDOM test finalizo");
+    });
+  }
   
-    return res;
-});
+var task = cron.schedule('* * * * *', execute, {scheduled:true});
+router.get('/start', (req,res) => {
+    execute();
+    task.start();
+    res.send('Cron iniciado')
+    
+  })
+
+
+  
+router.get('/stop', (req,res) => {
+    task.stop()
+    res.send('Worker detenido')
+  })
+
 
 module.exports = router;

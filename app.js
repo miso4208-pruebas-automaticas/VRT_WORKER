@@ -7,6 +7,23 @@ const app = express();
 const config = require('./config.json');
 var randomController = require('./app/controllers/worker.ctrl.js');
 
+const db = mysql.createConnection ({
+  host: 'hangover.cxelmrn7jq89.eu-west-1.rds.amazonaws.com',
+  user: 'admin',
+  password: 'admin2019',
+  database: 'hangover'
+});
+
+db.connect((err) => {
+  if (err) {
+      throw err;
+  }
+  console.log('Connected to database');
+});
+global.db = db;
+
+
+
 const port = 8002;
 
 app.options('*', cors());
@@ -22,14 +39,6 @@ app.use( function (req, res, next) {
 
 app.listen(port, () => {
   console.log('Worker random listening on ' + port);
-});
-
-var connection = mysql.createConnection({
-  host     : config.dhost,
-  user     : config.dbuser,
-  password : config.dbpassword,
-  port     : '3306',
-  database: config.dbname
 });
 
 // connection.connect(function(err) {

@@ -1,13 +1,14 @@
 'use strict'
 const shell = require('shelljs');
 const fs = require('fs');
+const s3 = require('../../worker-sqs/s3Storage.js')
 
 module.exports.generateRandom = function(req,success,error){
     var appPackage;
     var apkInstall;
-    console.log(req[0]);
-    switch(req.app){
-        case 'HABITICA':
+    console.log("..."+JSON.stringify(req));
+    switch(req.aplication){
+        case 'HABITICA_WEB':
             appPackage = 'com.habitrpg.android.habitica';
             apkInstall = 'habitica.apk';
             break;
@@ -20,14 +21,20 @@ module.exports.generateRandom = function(req,success,error){
     }
     if(!req.code)
         throw error( {status: "CODE_IS_NULL" }); 
-    const eventsNumber = req.number ? req.number : 10;
+    const eventsNumber = req.numberExecution ? req.numberExecution : 10;
     shell.exec(`adb install ${req.path_project}/vendor/${apkInstall}`)
     shell.exec(`adb shell monkey -p ${appPackage} -v ${eventsNumber}`, function(code, stdout, stderr) {
-        fs.writeFile(`${req.path_project}/reports/random/${req.code}_${req.app}.txt`, stdout, function (err) {
+        s3.saveFileToS3(req.code,stdout,()=>{
+            console.log('Archivo creado en S3 Codigo: ',req.code);
+            success('Archivo creado en S3 Codigo: ',req.code);
+        });
+
+
+       /* fs.writeFile(`${req.path_project}/reports/random/${req.code}_${req.aplication}.txt`, stdout, function (err) {
             if (err) throw err;
             console.log('File is created successfully.');
-            success(`${req.path_project}/reports/${req.code}${req.app}.txt`);
-          }); 
+            success(`${req.path_project}/reports/${req.code}${req.aplication}.txt`);
+          });*/ 
       });
     
 }
