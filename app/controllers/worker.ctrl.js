@@ -11,7 +11,7 @@ var sqs = require('../../worker-sqs/sqs.js')
 
 const execute = () => {
     sqs.getSqs(function(apps){
-        console.log("Ejecucion RANDOM test finalizo");
+        console.log("Ejecucion RANDOM test");
     });
   }
   
