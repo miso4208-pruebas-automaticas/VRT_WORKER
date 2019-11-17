@@ -1,5 +1,5 @@
 {
-  "name": "worker_monkey_adb",
+  "name": "VRT_Worker",
   "version": "0.0.0",
   "private": true,
   "main": "app.js",
